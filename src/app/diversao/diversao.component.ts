@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-diversao',
-  templateUrl: './diversao.component.html',
-  styleUrls: ['./diversao.component.css']
+  selector: "app-diversao",
+  templateUrl: "./diversao.component.html",
+  styleUrls: ["./diversao.component.css"],
 })
 export class DiversaoComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
