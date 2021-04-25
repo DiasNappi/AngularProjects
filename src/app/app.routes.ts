@@ -1,8 +1,8 @@
+import { OfertaComponent } from "./oferta/oferta.component";
 import { DiversaoComponent } from "./diversao/diversao.component";
 import { RestaurantesComponent } from "./restaurantes/restaurantes.component";
 import { HomeComponent } from "./home/home.component";
 import { Routes } from "@angular/router";
-import { componentFactoryName } from "@angular/compiler";
 
 export const routes: Routes = [
   {
@@ -16,5 +16,9 @@ export const routes: Routes = [
   {
     path: "diversao",
     component: DiversaoComponent,
+  },
+  {
+    path: "oferta",
+    component: OfertaComponent,
   },
 ];
