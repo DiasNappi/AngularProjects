@@ -9,23 +9,41 @@ export class OfertaService {
 
   public getOferta(): Promise<Oferta[]> {
     return this.http
-      .get(`${URL_API}?destaque=true`)
+      .get(`${URL_API}/ofertas?destaque=true`)
       .toPromise()
       .then((resposta: any) => resposta.json());
   }
 
   public getOfertasCategoria(categoria: string): Promise<Oferta[]> {
     return this.http
-      .get(`${URL_API}?categoria=${categoria}`)
+      .get(`${URL_API}/ofertas?categoria=${categoria}`)
       .toPromise()
       .then((resposta: any) => resposta.json());
   }
 
   public getOfertasPorId(id: number): Promise<Oferta> {
     return this.http
-      .get(`${URL_API}?id=${id}`)
+      .get(`${URL_API}/ofertas?id=${id}`)
       .toPromise()
       .then((resposta: any) => resposta.json()[0]);
+  }
+
+  public getComoUsarOfertasPorId(id: number): Promise<string> {
+    return this.http
+      .get(`${URL_API}/como-usar?id=${id}`)
+      .toPromise()
+      .then((resposta: any) => {
+        return resposta.json()[0].descricao;
+      });
+  }
+
+  public getOndeFicaOfertasPorId(id: number): Promise<string> {
+    return this.http
+      .get(`${URL_API}/onde-fica?id=${id}`)
+      .toPromise()
+      .then((resposta: any) => {
+        return resposta.json()[0].descricao;
+      });
   }
 
   // public getOferta2(): Promise<Oferta[]>{
