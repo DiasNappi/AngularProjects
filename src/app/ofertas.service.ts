@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Http, HttpModule } from "@angular/http";
-import { resolve } from "url";
 import { Oferta } from "./shared/oferta.model";
 import "rxjs/add/operator/toPromise";
 @Injectable()
