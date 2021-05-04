@@ -17,7 +17,6 @@ export class OfertaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.route.snapshot.params["id"]);
     this.ofertaService
       .getOfertasPorId(this.route.snapshot.params["id"])
       .then((oferta: Oferta) => {

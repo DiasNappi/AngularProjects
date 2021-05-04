@@ -1,3 +1,5 @@
+import { OndeFicaComponent } from "./oferta/onde-fica/onde-fica.component";
+import { ComoUsarComponent } from "./oferta/como-usar/como-usar.component";
 import { OfertaComponent } from "./oferta/oferta.component";
 import { DiversaoComponent } from "./diversao/diversao.component";
 import { RestaurantesComponent } from "./restaurantes/restaurantes.component";
@@ -24,5 +26,10 @@ export const routes: Routes = [
   {
     path: "oferta/:id",
     component: OfertaComponent,
+    children: [
+      { path: "", component: ComoUsarComponent },
+      { path: "como-usar", component: ComoUsarComponent },
+      { path: "onde-fica", component: OndeFicaComponent },
+    ],
   },
 ];
