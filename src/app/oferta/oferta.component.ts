@@ -1,7 +1,10 @@
 import { Oferta } from "./../shared/oferta.model";
 import { OfertaService } from "./../ofertas.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs/Observable";
+import "rxjs/Rx";
+import { Observer, Subscription } from "rxjs/Rx";
 
 @Component({
   selector: "app-oferta",
@@ -9,7 +12,9 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./oferta.component.css"],
   providers: [OfertaService],
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
+  private tempoObservableSub: Subscription;
+  private observarObservableSub: Subscription;
   public oferta: Oferta;
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +27,32 @@ export class OfertaComponent implements OnInit {
       .then((oferta: Oferta) => {
         this.oferta = oferta;
       });
-    // this.route.params.subscribe((parametro: any) => {
-    //   console.log(parametro))};  //Toda vez que o id é alterado ele chama a função console.log
+    // this.route.params.subscribe(
+    //   (parametro: any) => console.log(parametro),
+    //   (erro: any) => console.log("deu erro"),
+    //   () => console.log("completou")
+    // );
+
+    let tempo = Observable.interval(500);
+    this.tempoObservableSub = tempo.subscribe((intervalo: number) => {
+      console.log(intervalo);
+    });
+
+    let observar = Observable.create((parametro: Observer<string>) => {
+      parametro.next("yow");
+      parametro.error("deu ruim");
+      // parametro.complete();
+    });
+
+    this.observarObservableSub = observar.subscribe(
+      (parametro: string) => console.log(parametro),
+      (error: string) => console.log(error),
+      () => console.log("deu bom")
+    );
+  }
+
+  ngOnDestroy() {
+    this.observarObservableSub.unsubscribe();
+    this.tempoObservableSub.unsubscribe();
   }
 }
