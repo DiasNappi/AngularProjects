@@ -13,6 +13,8 @@ import { RouterModule } from "@angular/router";
 import { OfertaComponent } from "./oferta/oferta.component";
 import { ComoUsarComponent } from "./oferta/como-usar/como-usar.component";
 import { OndeFicaComponent } from "./oferta/onde-fica/onde-fica.component";
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrdemCompraSucessoComponent } from './ordem-compra/ordem-compra-sucesso/ordem-compra-sucesso.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { OndeFicaComponent } from "./oferta/onde-fica/onde-fica.component";
     ComoUsarComponent,
     OndeFicaComponent,
     DescricaoReduzida,
+    OrdemCompraComponent,
+    OrdemCompraSucessoComponent,
   ],
   imports: [BrowserModule, HttpModule, RouterModule.forRoot(routes)],
   providers: [{ provide: LOCALE_ID, useValue: "pt-Br" }],
