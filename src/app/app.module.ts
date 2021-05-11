@@ -13,8 +13,9 @@ import { RouterModule } from "@angular/router";
 import { OfertaComponent } from "./oferta/oferta.component";
 import { ComoUsarComponent } from "./oferta/como-usar/como-usar.component";
 import { OndeFicaComponent } from "./oferta/onde-fica/onde-fica.component";
-import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
-import { OrdemCompraSucessoComponent } from './ordem-compra/ordem-compra-sucesso/ordem-compra-sucesso.component';
+import { OrdemCompraComponent } from "./ordem-compra/ordem-compra.component";
+import { OrdemCompraSucessoComponent } from "./ordem-compra/ordem-compra-sucesso/ordem-compra-sucesso.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,12 @@ import { OrdemCompraSucessoComponent } from './ordem-compra/ordem-compra-sucesso
     OrdemCompraComponent,
     OrdemCompraSucessoComponent,
   ],
-  imports: [BrowserModule, HttpModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+  ],
   providers: [{ provide: LOCALE_ID, useValue: "pt-Br" }],
   bootstrap: [AppComponent],
 })

@@ -206,6 +206,20 @@
       "numero": "11",
       "formaPagamento": "debito",
       "id": 3
+    },
+    {
+      "endereco": "Rua P",
+      "complemento": "Casa Vrau",
+      "numero": "10",
+      "formaPagamento": "dinheiro",
+      "id": 4
+    },
+    {
+      "endereco": "Rua A",
+      "complemento": "Rua B",
+      "numero": "10",
+      "formaPagamento": "dinheiro",
+      "id": 5
     }
   ]
 }
