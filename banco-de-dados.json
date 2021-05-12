@@ -220,6 +220,20 @@
       "numero": "10",
       "formaPagamento": "dinheiro",
       "id": 5
+    },
+    {
+      "endereco": "AAAA",
+      "complemento": "1",
+      "numero": "1",
+      "formaPagamento": "debito",
+      "id": 6
+    },
+    {
+      "endereco": "Vrau",
+      "complemento": "Vrauvru",
+      "numero": "10",
+      "formaPagamento": "dinheiro",
+      "id": 7
     }
   ]
 }
