@@ -1,3 +1,5 @@
+import { ItemCarrinho } from "./../shared/itemCarrinho.model";
+import { CarrinhoService } from "./../carrinho.service";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { OrdemCompraService } from "../ordem-compra.service";
@@ -10,6 +12,7 @@ import { Pedido } from "../shared/pedido.model";
   providers: [OrdemCompraService],
 })
 export class OrdemCompraComponent implements OnInit {
+  public itensCarrinho: ItemCarrinho[] = [];
   public idPedidoCompra: number;
 
   public formulario: FormGroup = new FormGroup({
@@ -27,9 +30,15 @@ export class OrdemCompraComponent implements OnInit {
     formaPagamento: new FormControl(null, [Validators.required]),
   });
 
-  constructor(private ordemCompraService: OrdemCompraService) {}
+  constructor(
+    private ordemCompraService: OrdemCompraService,
+    public carrinhoService: CarrinhoService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.itensCarrinho = this.carrinhoService.exibirItens();
+    console.log(this.itensCarrinho);
+  }
 
   public confirmarCompra(): void {
     if (this.formulario.status === "INVALID") {
@@ -37,18 +46,31 @@ export class OrdemCompraComponent implements OnInit {
       this.formulario.get("numero").markAsTouched();
       this.formulario.get("formaPagamento").markAsTouched();
     } else {
-      let pedido: Pedido = new Pedido(
-        this.formulario.value.endereco,
-        this.formulario.value.complemento,
-        this.formulario.value.numero,
-        this.formulario.value.formaPagamento
-      );
-      this.ordemCompraService
-        .efetivarCompra(pedido)
-        .subscribe((idPedido: number) => {
-          this.idPedidoCompra = idPedido;
-          console.log(this.idPedidoCompra);
-        });
+      if (this.carrinhoService.exibirItens().length === 0) {
+        alert("Seu carrinho está vazio");
+      } else {
+        let pedido: Pedido = new Pedido(
+          this.formulario.value.endereco,
+          this.formulario.value.complemento,
+          this.formulario.value.numero,
+          this.formulario.value.formaPagamento,
+          this.carrinhoService.exibirItens()
+        );
+        this.ordemCompraService
+          .efetivarCompra(pedido)
+          .subscribe((idPedido: number) => {
+            this.idPedidoCompra = idPedido;
+            this.carrinhoService.limparCarrinho();
+          });
+      }
     }
+  }
+
+  public adicionar(item: ItemCarrinho) {
+    this.carrinhoService.adicionarCarrinho(item);
+  }
+
+  public diminuir(item: ItemCarrinho) {
+    this.carrinhoService.diminuirCarrinho(item);
   }
 }

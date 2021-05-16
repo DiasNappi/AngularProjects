@@ -1,3 +1,4 @@
+import { CarrinhoService } from "./carrinho.service";
 import { DescricaoReduzida } from "./util/descricao-reduzida.pipe";
 import { routes } from "./app.routes";
 import { BrowserModule } from "@angular/platform-browser";
@@ -40,7 +41,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "pt-Br" }],
+  providers: [{ provide: LOCALE_ID, useValue: "pt-Br" }, CarrinhoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
